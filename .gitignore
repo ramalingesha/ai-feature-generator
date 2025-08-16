@@ -1,0 +1,77 @@
+# ----------------------------------------
+# 🐍 Python
+# ----------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Local files
+uploads
+
+# Bytecode cache
+__pycache__/
+*.cache
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# pip, pipenv, poetry
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile.lock
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Pytest
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+htmlcov/
+.tox/
+.junit.xml
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+
+# Pylint
+pylint-report.txt
+
+# VS Code
+.vscode/
+
+# Local settings
+*.env
+.env.*
+*.local
+*.db
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Logs
+*.log
+
+# SQLite/DB files
+*.sqlite3
+*.db
+
+# Mac/Linux/Windows OS files
+.DS_Store
+Thumbs.db
