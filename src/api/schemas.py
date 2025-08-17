@@ -19,3 +19,15 @@ class FeatureGenerationResponse(BaseModel):
         ..., 
         description="The generated Gherkin content for the .feature file."
     )
+
+class FilePathInput(BaseModel):
+    """
+    Pydantic model for an API request that takes a file path.
+    """
+    file_path: str = Field(..., description="Relative file path to the feature file.")
+
+class JsonConversionResponse(BaseModel):
+    """
+    Pydantic model for the JSON conversion API response.
+    """
+    parsed_json: dict = Field(..., description="The parsed JSON object from the feature file.")

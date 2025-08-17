@@ -1,10 +1,8 @@
 from typing import cast
 from langchain_core.language_models import BaseChatModel
-from langchain_openai import ChatOpenAI
-from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import Runnable
-from src.core.config import settings
+from services.llm_factory import LLMFactory
 from src.services.prompts import FEATURE_GENERATION_PROMPT
 
 class LLMService:
@@ -13,28 +11,9 @@ class LLMService:
     It encapsulates the logic for selecting and invoking the correct model based on configuration.
     """
     def __init__(self) -> None:
-        self.llm: BaseChatModel = self._initialize_llm()
+        self.llm: BaseChatModel = LLMFactory.get_llm()
         self.chain: Runnable = self._initialize_chain()
 
-    def _initialize_llm(self) -> BaseChatModel:
-        """
-        Initializes the correct LangChain LLM instance based on the
-        LLM_PROVIDER setting in the environment.
-        """
-        if settings.llm_provider == "ollama":
-            # For Ollama, the server must be running locally.
-            return ChatOllama(model=settings.ollama_model)
-        elif settings.llm_provider == "openai":
-            # For OpenAI, an API key must be provided in the .env file.
-            if not settings.openai_api_key:
-                raise ValueError("OPENAI_API_KEY is not set.")
-            return ChatOpenAI(
-                api_key=settings.openai_api_key,
-                model=settings.openai_model
-            )
-        else:
-            raise ValueError(f"Unsupported LLM provider: {settings.llm_provider}")
-            
     def _initialize_chain(self) -> Runnable:
         """
         Creates a LangChain chain by combining the prompt template and the LLM.
